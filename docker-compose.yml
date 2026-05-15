@@ -1,7 +1,8 @@
 services:
   db:
-    build: .
     container_name: mysql_usuarios
+    image: ${DOCKER_IMAGE_URL:-data_eval2-db:latest}
+    build: .
     restart: always
     environment:
       - MYSQL_HOST=${DB_HOST}
@@ -11,7 +12,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
       - MYSQL_PORT=${DB_PORT}
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 volumes:
